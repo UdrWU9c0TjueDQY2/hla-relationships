@@ -1,8 +1,8 @@
 {
  "name": "Kinder Conversations",
- "tagline": "Tools for couples, second dates and the letters you mean to write",
- "baseUrl": "https://udrwu9c0tjuedqy2.github.io/hla-relationships",
- "indexNowKey": "430e3049b417da03e322f3c52fb3ef0c",
+ "tagline": "Tools for couples, second dates and daily letters to yourself.",
+ "baseUrl": "https://kinder-conversation-tools.pages.dev",
+ "indexNowKey": "4a0083abe3b3b3ed5788af8422d4ed3c",
  "apps": [
   {
    "slug": "unfight",
