@@ -1,0 +1,23 @@
+{
+ "name": "Kinder Conversations",
+ "tagline": "Tools for couples, second dates and the letters you mean to write",
+ "baseUrl": "https://kinder-conversations.pages.dev",
+ "indexNowKey": "430e3049b417da03e322f3c52fb3ef0c",
+ "apps": [
+  {
+   "slug": "unfight",
+   "name": "UnFight: Couples & Marriage",
+   "id": 6794421070
+  },
+  {
+   "slug": "secondyes",
+   "name": "SecondYes: Second Date Planner",
+   "id": 6806461390
+  },
+  {
+   "slug": "dear-you",
+   "name": "Dear You: Daily Letters",
+   "id": 6792827344
+  }
+ ]
+}
