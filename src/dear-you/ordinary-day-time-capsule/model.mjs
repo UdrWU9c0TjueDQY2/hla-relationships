@@ -1,0 +1,1 @@
+export function letter(values){const [title,...parts]=values.map(s=>String(s).trim());const answers=parts.filter(Boolean);return {count:answers.length,text:(title||'An ordinary day')+'\n\nDear later me,\n\n'+(answers.length?answers.join('\n\n'):'Your answers will appear here as you write.')+'\n\nFrom me, today.'};}
