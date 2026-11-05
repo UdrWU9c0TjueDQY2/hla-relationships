@@ -9,7 +9,7 @@ if(text.length>3000){$('status').textContent='Keep the starting draft to 3,000 c
 const found=inspect(text);$('prompts').replaceChildren();found.forEach(f=>{const p=document.createElement('p');p.textContent='“'+f.phrase+'” ('+f.matches.length+') — '+f.prompt;$('prompts').appendChild(p);});
 $('analysis-note').textContent=found.length?'These are invitations to add detail, not errors. Keep any word that sounds right to you.':'None of the eight prompt phrases appeared. This does not mean the writing is specific or finished. Try naming one place, action or object yourself.';
 $('highlight').replaceChildren();const ranges=found.flatMap(x=>x.matches).sort((a,b)=>a.start-b.start);let end=0;ranges.forEach(r=>{const span=document.createElement('span');span.textContent=text.slice(end,r.start);$('highlight').appendChild(span);const mark=document.createElement('mark');mark.textContent=text.slice(r.start,r.end);$('highlight').appendChild(mark);end=r.end;});const tail=document.createElement('span');tail.textContent=text.slice(end);$('highlight').appendChild(tail);$('analysis').hidden=false;}
-function compare(){const a=$('original').value,b=$('revision').value;$('comparison').hidden=true;if(!a.trim()||!b.trim()){$('status').textContent='Add both a starting draft and your revised draft before comparing.';(!a.trim()?$('original'):$('revision')).focus();return;}
+function compare(){$('comparison-file-status').textContent='';const a=$('original').value,b=$('revision').value;$('comparison').hidden=true;if(!a.trim()||!b.trim()){$('status').textContent='Add both a starting draft and your revised draft before comparing.';(!a.trim()?$('original'):$('revision')).focus();return;}
 if(a.length>3000||b.length>3000){$('status').textContent='Keep each draft to 3,000 characters.';return;}$('status').textContent='';$('before').textContent=a;$('after').textContent=b;$('count').textContent='Starting draft: '+words(a)+' words. Revised draft: '+words(b)+' words. Length is not a quality score.';$('comparison').hidden=false;$('count').focus();}
 $('analyze').addEventListener('click',analyze);$('compare').addEventListener('click',compare);
 $('original').addEventListener('input',invalidate);$('revision').addEventListener('input',()=>{$('comparison').hidden=true;$('status').textContent='';});
@@ -135,14 +135,27 @@ $('download-draft').addEventListener('click', () => {
   const text = $(version).value;
   if (!text.trim()) return;
   copyAttempt++;
+  saveTextFile(text, version === 'revision' ? 'letter-revised.txt' : 'letter-starting-draft.txt');
+  copyStatus.textContent = 'Text file prepared. Your browser handles the download.';
+});
+
+$('download-comparison').addEventListener('click', () => {
+  if ($('comparison').hidden) return;
+  const before = $('before').textContent;
+  const after = $('after').textContent;
+  if (!before.trim() || !after.trim()) return;
+  saveTextFile(['Starting draft', before, 'Revised draft', after].join('\n\n'), 'letter-before-and-after.txt');
+  $('comparison-file-status').textContent = 'Text file prepared with both versions.';
+});
+
+function saveTextFile(text, filename) {
   const file = new Blob([text], {type: 'text/plain;charset=utf-8'});
   const fileURL = URL.createObjectURL(file);
   const link = document.createElement('a');
   link.href = fileURL;
-  link.download = version === 'revision' ? 'letter-revised.txt' : 'letter-starting-draft.txt';
+  link.download = filename;
   document.body.append(link);
   link.click();
   link.remove();
   window.setTimeout(() => URL.revokeObjectURL(fileURL), 60000);
-  copyStatus.textContent = 'Text file prepared. Your browser handles the download.';
-});
+}
