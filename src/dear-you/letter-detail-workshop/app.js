@@ -30,7 +30,8 @@ $('start-revision').addEventListener('click', () => {
   revision.setSelectionRange(revision.value.length, revision.value.length);
 });
 
-const exampleText = 'Today was a great day. We did lots of things and everything felt special.';
+const exampleText = 'It was a special morning.';
+const exampleRevision = 'We ate toast on the kitchen floor while the table paint dried.';
 
 function discardDrafts(message) {
   return (!$('original').value && !$('revision').value) || window.confirm(message);
@@ -44,13 +45,25 @@ function clearOutput() {
   if ($('copy-status')) $('copy-status').textContent = '';
 }
 
-$('example').addEventListener('click', () => {
-  if (!discardDrafts('Replace both drafts with the fictional example?')) return;
+function loadWorkedExample(event) {
+  event.preventDefault();
+  const original = $('original');
+  const revision = $('revision');
+  const alreadyLoaded = original.value === exampleText && revision.value === exampleRevision;
+  if (!alreadyLoaded && !discardDrafts('Replace both drafts with the fictional worked example?')) return;
   clearOutput();
-  $('original').value = exampleText;
-  $('revision').value = '';
-  $('original').focus();
-});
+  original.value = exampleText;
+  revision.value = exampleRevision;
+  // Notify the editing controls only after a confirmed replacement.
+  for (const field of [original, revision]) {
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  analyze();
+  $('compare').click();
+}
+
+$('example').addEventListener('click', loadWorkedExample);
+$('hero-example').addEventListener('click', loadWorkedExample);
 
 $('clear').addEventListener('click', () => {
   if (!discardDrafts('Erase both drafts from this page?')) return;
