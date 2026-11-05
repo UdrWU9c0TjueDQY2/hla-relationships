@@ -1,2 +1,35 @@
-const $=id=>document.getElementById(id),ids=['ac','aa','at','bc','ba','bt'];function compare(){const v=ids.map(id=>Number($(id).value));if(ids.some((id,i)=>$(id).value.trim()===''||!Number.isFinite(v[i])||v[i]<0||v[i]>10000)){$('result').textContent='Use a number from 0 to 10,000 in every numeric field.';return;}const [ac,aa,at,bc,ba,bt]=v,a=aa+at,b=ba+bt;const an=$('an').value.trim()||'Plan A',bn=$('bn').value.trim()||'Plan B';$('result').textContent=an+': '+ac.toFixed(2)+' per person; '+a+' total minutes.\n'+bn+': '+bc.toFixed(2)+' per person; '+b+' total minutes.\n\n'+(ac===bc?'Same estimated cost.':(ac<bc?an:bn)+' costs '+Math.abs(ac-bc).toFixed(2)+' less per person.')+'\n'+(a===b?'Same estimated total time.':(a<b?an:bn)+' takes '+Math.abs(a-b)+' fewer minutes.')+'\n\nThese are your estimates, not live prices or travel times.';}
-$('compare').addEventListener('click',compare);['an','bn',...ids].forEach(id=>$(id).addEventListener('input',()=>{$('result').textContent='';}));$('reset').addEventListener('click',()=>{[15,75,30,25,90,50].forEach((v,i)=>$(ids[i]).value=v);$('an').value='Coffee and a walk';$('bn').value='Gallery and a snack';$('result').textContent='';});
+const form = document.getElementById('plans');
+const result = document.getElementById('result');
+const field = id => document.getElementById(id);
+
+function readPlan(prefix, fallback) {
+  return {
+    name: field(prefix + 'n').value.trim() || fallback,
+    cents: Math.round(field(prefix + 'c').valueAsNumber * 100),
+    minutes: field(prefix + 'a').valueAsNumber + field(prefix + 't').valueAsNumber
+  };
+}
+
+function price(cents) {
+  return (cents / 100).toFixed(2);
+}
+
+function compare(event) {
+  event.preventDefault();
+  const a = readPlan('a', 'Plan A');
+  const b = readPlan('b', 'Plan B');
+  const cheaper = a.cents < b.cents ? a : b;
+  const shorter = a.minutes < b.minutes ? a : b;
+  result.textContent = [
+    ...[a, b].map(plan => plan.name + ': ' + price(plan.cents) + ' per person; ' + plan.minutes + ' total minutes.'),
+    '',
+    a.cents === b.cents ? 'Same estimated cost.' : cheaper.name + ' costs ' + price(Math.abs(a.cents - b.cents)) + ' less per person.',
+    a.minutes === b.minutes ? 'Same estimated total time.' : shorter.name + ' takes ' + Math.abs(a.minutes - b.minutes) + ' fewer minutes.',
+    '',
+    'These estimates use the prices and travel times you entered.'
+  ].join('\n');
+}
+
+form.addEventListener('submit', compare);
+form.addEventListener('input', () => { result.textContent = ''; });
+form.addEventListener('reset', () => { result.textContent = ''; });
