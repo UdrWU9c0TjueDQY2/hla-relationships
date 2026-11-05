@@ -13,6 +13,23 @@ function compare(){const a=$('original').value,b=$('revision').value;$('comparis
 if(a.length>3000||b.length>3000){$('status').textContent='Keep each draft to 3,000 characters.';return;}$('status').textContent='';$('before').textContent=a;$('after').textContent=b;$('count').textContent='Starting draft: '+words(a)+' words. Revised draft: '+words(b)+' words. Length is not a quality score.';$('comparison').hidden=false;$('count').focus();}
 $('analyze').addEventListener('click',analyze);$('compare').addEventListener('click',compare);
 $('original').addEventListener('input',invalidate);$('revision').addEventListener('input',()=>{$('comparison').hidden=true;$('status').textContent='';});
+$('start-revision').addEventListener('click', () => {
+  const original = $('original');
+  const revision = $('revision');
+  if (!original.value.trim()) {
+    $('status').textContent = 'Add a starting draft before using it for your revision.';
+    original.focus();
+    return;
+  }
+  if (revision.value !== original.value) {
+    if (revision.value && !window.confirm('Replace your revision with the starting draft?')) return;
+    revision.value = original.value;
+    revision.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  revision.focus();
+  revision.setSelectionRange(revision.value.length, revision.value.length);
+});
+
 const exampleText = 'Today was a great day. We did lots of things and everything felt special.';
 
 function discardDrafts(message) {
@@ -67,3 +84,4 @@ if (copyRevision) {
     }
   });
 }
+
