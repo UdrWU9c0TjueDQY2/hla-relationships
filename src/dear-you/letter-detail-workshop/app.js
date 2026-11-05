@@ -13,5 +13,57 @@ function compare(){const a=$('original').value,b=$('revision').value;$('comparis
 if(a.length>3000||b.length>3000){$('status').textContent='Keep each draft to 3,000 characters.';return;}$('status').textContent='';$('before').textContent=a;$('after').textContent=b;$('count').textContent='Starting draft: '+words(a)+' words. Revised draft: '+words(b)+' words. Length is not a quality score.';$('comparison').hidden=false;$('count').focus();}
 $('analyze').addEventListener('click',analyze);$('compare').addEventListener('click',compare);
 $('original').addEventListener('input',invalidate);$('revision').addEventListener('input',()=>{$('comparison').hidden=true;$('status').textContent='';});
-$('example').addEventListener('click',()=>{$('original').value='Today was a great day. We did lots of things and everything felt special.';$('revision').value='';invalidate();});
-$('clear').addEventListener('click',()=>{$('original').value='';$('revision').value='';invalidate();$('original').focus();});
+const exampleText = 'Today was a great day. We did lots of things and everything felt special.';
+
+function discardDrafts(message) {
+  return (!$('original').value && !$('revision').value) || window.confirm(message);
+}
+
+function clearOutput() {
+  invalidate();
+  for (const id of ['before', 'after', 'count', 'highlight', 'analysis-note', 'prompts']) {
+    $(id).replaceChildren();
+  }
+  if ($('copy-status')) $('copy-status').textContent = '';
+}
+
+$('example').addEventListener('click', () => {
+  if (!discardDrafts('Replace both drafts with the fictional example?')) return;
+  clearOutput();
+  $('original').value = exampleText;
+  $('revision').value = '';
+  $('original').focus();
+});
+
+$('clear').addEventListener('click', () => {
+  if (!discardDrafts('Erase both drafts from this page?')) return;
+  clearOutput();
+  $('original').value = '';
+  $('revision').value = '';
+  $('original').focus();
+});
+
+const copyRevision = $('copy-revision');
+if (copyRevision) {
+  const copyStatus = $('copy-status');
+  let generation = 0;
+  for (const id of ['original', 'revision', 'example', 'clear']) {
+    const event = id === 'original' || id === 'revision' ? 'input' : 'click';
+    $(id).addEventListener(event, () => {generation++; copyStatus.textContent = '';});
+  }
+  copyRevision.addEventListener('click', async () => {
+    const revision = $('revision');
+    const text = revision.value;
+    const attempt = ++generation;
+    if (!text.trim()) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      if (attempt === generation) copyStatus.textContent = 'Revision copied. You can paste it into a new letter.';
+    } catch {
+      if (attempt !== generation) return;
+      revision.focus();
+      revision.select();
+      copyStatus.textContent = 'Your revision is selected. Use your device’s Copy command.';
+    }
+  });
+}
