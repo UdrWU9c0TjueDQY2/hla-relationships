@@ -60,28 +60,76 @@ $('clear').addEventListener('click', () => {
   $('original').focus();
 });
 
-const copyRevision = $('copy-revision');
-if (copyRevision) {
-  const copyStatus = $('copy-status');
-  let generation = 0;
-  for (const id of ['original', 'revision', 'example', 'clear']) {
-    const event = id === 'original' || id === 'revision' ? 'input' : 'click';
-    $(id).addEventListener(event, () => {generation++; copyStatus.textContent = '';});
+const draftPicker = $('draft-version');
+const keepDraft = $('keep-draft');
+const copyStatus = $('copy-status');
+let chosenDraft = null;
+let copyAttempt = 0;
+
+function updateDraftActions() {
+  copyAttempt++;
+  copyStatus.textContent = '';
+  const hasOriginal = Boolean($('original').value.trim());
+  const hasRevision = Boolean($('revision').value.trim());
+  keepDraft.hidden = !hasOriginal && !hasRevision;
+  if (keepDraft.hidden) {
+    chosenDraft = null;
+    return;
   }
-  copyRevision.addEventListener('click', async () => {
-    const revision = $('revision');
-    const text = revision.value;
-    const attempt = ++generation;
-    if (!text.trim()) return;
-    try {
-      await navigator.clipboard.writeText(text);
-      if (attempt === generation) copyStatus.textContent = 'Revision copied. You can paste it into a new letter.';
-    } catch {
-      if (attempt !== generation) return;
-      revision.focus();
-      revision.select();
-      copyStatus.textContent = 'Your revision is selected. Use your device’s Copy command.';
-    }
-  });
+  if (chosenDraft && !$(chosenDraft).value.trim()) chosenDraft = null;
+  draftPicker.value = chosenDraft || (hasRevision ? 'revision' : 'original');
+  const both = hasOriginal && hasRevision;
+  $('draft-picker').hidden = !both;
+  $('single-version').hidden = both;
+  $('single-version').textContent = hasRevision ? 'Your revised draft' : 'Your starting draft';
+  $('copy-revision').textContent = draftPicker.value === 'revision' ? 'Copy revised letter' : 'Copy starting draft';
 }
 
+for (const id of ['original', 'revision']) $(id).addEventListener('input', updateDraftActions);
+// Example and clear update the fields programmatically.
+for (const id of ['example', 'clear']) $(id).addEventListener('click', updateDraftActions);
+draftPicker.addEventListener('change', () => {
+  chosenDraft = draftPicker.value;
+  updateDraftActions();
+});
+$('compare').addEventListener('click', () => {
+  if (!$('comparison').hidden) {
+    chosenDraft = 'revision';
+    updateDraftActions();
+  }
+});
+window.addEventListener('pageshow', updateDraftActions);
+updateDraftActions();
+
+$('copy-revision').addEventListener('click', async () => {
+  const field = $(draftPicker.value);
+  const text = field.value;
+  const attempt = ++copyAttempt;
+  if (!text.trim()) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    if (attempt === copyAttempt) copyStatus.textContent = 'Copied. Paste your letter wherever you want to keep it.';
+  } catch {
+    if (attempt !== copyAttempt) return;
+    field.focus();
+    field.select();
+    copyStatus.textContent = 'Your text is selected. Use your device’s Copy command.';
+  }
+});
+
+$('download-draft').addEventListener('click', () => {
+  const version = draftPicker.value;
+  const text = $(version).value;
+  if (!text.trim()) return;
+  copyAttempt++;
+  const file = new Blob([text], {type: 'text/plain;charset=utf-8'});
+  const fileURL = URL.createObjectURL(file);
+  const link = document.createElement('a');
+  link.href = fileURL;
+  link.download = version === 'revision' ? 'letter-revised.txt' : 'letter-starting-draft.txt';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(fileURL), 60000);
+  copyStatus.textContent = 'Text file prepared. Your browser handles the download.';
+});
