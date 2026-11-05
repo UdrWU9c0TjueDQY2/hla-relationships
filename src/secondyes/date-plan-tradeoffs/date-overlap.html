@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><meta name="referrer" content="no-referrer"><title>Which date ideas work for both of you? | SecondYes web companion</title>
+<style>
+:root{color-scheme:light;--ink:#2b2135;--accent:#54286e;--line:#c9b8d2;--paper:#faf6ee}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,sans-serif}main{max-width:650px;margin:auto;padding:clamp(16px,4vw,30px)}.brand{margin:0 0 7px;color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:.09em}h1{font-family:Georgia,serif;font-size:clamp(1.65rem,5vw,2.55rem);line-height:1.1;margin:0 0 16px}h2{font-size:1.16rem;margin:0}.step{min-height:240px}p{margin:.6em 0}fieldset{border:0;padding:0;margin:0}legend{font-size:1.16rem;font-weight:700}label{display:block;font-weight:600}input[type=text]{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:5px;background:white;color:var(--ink);margin:2px 0 8px}.choices{display:grid;gap:7px;margin:12px 0}.pick{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--line);border-radius:5px;cursor:pointer;min-height:44px;overflow-wrap:anywhere}.pick input{width:20px;height:20px;accent-color:var(--accent)}button{min-height:44px;border:1px solid var(--accent);border-radius:5px;background:var(--accent);color:white;padding:9px 15px;font:600 16px/1.3 system-ui,sans-serif;cursor:pointer}.quiet{background:transparent;color:var(--accent)}:focus-visible{outline:3px solid #9b5210;outline-offset:3px}.row{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}.fine,footer{font-size:.83rem;color:#594e60}footer{border-top:1px solid var(--line);padding-top:10px;margin-top:16px}a{color:var(--accent)}#results{padding-left:1.4em;font-weight:650;overflow-wrap:anywhere}#error{color:#802b25;font-weight:650}
+</style></head><body><main><p class="brand">HONEST LITTLE APPS · SECONDYES</p><h1>Which date ideas work for both of you?</h1>
+<section id="setup" class="step"><fieldset><legend>Choose two ideas</legend><p>Use one device. Each person can choose either idea, both, or neither. Only the overlap appears at the end.</p><label for="idea-a">Idea A</label><input id="idea-a" type="text" maxlength="65" required value="Browse a bookshop"><label for="idea-b">Idea B</label><input id="idea-b" type="text" maxlength="65" required value="Take a waterfront walk"><p id="error" role="alert"></p><button type="button" id="start">Start first turn</button></fieldset></section>
+<section id="vote" class="step" hidden><h2 id="vote-title" tabindex="-1"></h2><p id="vote-hint">Check every idea you would enjoy. Leave both unchecked if neither works.</p><fieldset aria-describedby="vote-hint"><legend class="fine">Ideas you would choose</legend><div class="choices"><label class="pick"><input type="checkbox" id="check-a"><span id="label-a"></span></label><label class="pick"><input type="checkbox" id="check-b"><span id="label-b"></span></label></div></fieldset><button type="button" id="lock"></button></section>
+<section id="pass" class="step" hidden><h2 tabindex="-1">Pass the device</h2><p>The first choices are hidden. Hand the screen to the second person before continuing.</p><button type="button" id="begin-second">Start second turn</button></section>
+<section id="result" class="step" hidden><h2 tabindex="-1">Your shared result</h2><p id="summary"></p><ul id="results"></ul><p id="followup"></p><a href="https://apps.apple.com/us/app/secondyes-second-date-planner/id6806461390" target="_blank" rel="noopener noreferrer">Make an invitation with SecondYes on iPhone ↗</a></section>
+<div class="row" id="restart-row" hidden><button type="button" class="quiet" id="restart">Start over</button></div>
+<noscript><p>Turn on JavaScript for the private, pass-and-play version. On paper, have each person mark the ideas they would enjoy. Compare the two lists and keep only the ideas that appear on both.</p></noscript>
+<footer>This separate browser activity keeps choices in this tab until you start over or leave. No account or messages.</footer></main>
+<script>
+(() => {
+  'use strict';
+  const byId = id => document.getElementById(id);
+  const panels = ['setup','vote','pass','result'];
+  const checks = [byId('check-a'),byId('check-b')];
+  const inputs = [byId('idea-a'),byId('idea-b')];
+  let ideas = [], first = [], turn = 1;
+  function show(id) {
+    panels.forEach(name => { byId(name).hidden = id !== name; });
+    byId('restart-row').hidden = id === 'setup';
+    const heading = byId(id).querySelector('h2');
+    if (heading) heading.focus();
+  }
+  function vote() {
+    checks.forEach(check => { check.checked = false; });
+    byId('vote-title').textContent = turn === 1 ? 'First person’s turn' : 'Second person’s turn';
+    byId('lock').textContent = turn === 1 ? 'Hide my choices' : 'Reveal shared choices';
+    show('vote');
+  }
+  byId('start').addEventListener('click', () => {
+    ideas = inputs.map(input => input.value.trim());
+    const valid = ideas.every(Boolean) && ideas[0].toLocaleLowerCase() !== ideas[1].toLocaleLowerCase();
+    byId('error').textContent = valid ? '' : 'Give the two ideas different names so you can tell them apart.';
+    if (!valid) { inputs[ideas[0] ? 1 : 0].focus(); return; }
+    byId('label-a').textContent = ideas[0];
+    byId('label-b').textContent = ideas[1];
+    turn = 1;
+    vote();
+  });
+  inputs.forEach(input => input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') { event.preventDefault(); byId('start').click(); }
+  }));
+  byId('lock').addEventListener('click', () => {
+    const selected = checks.map(check => check.checked);
+    checks.forEach(check => { check.checked = false; });
+    if (turn === 1) { first = selected; show('pass'); return; }
+    const overlap = ideas.filter((idea, i) => first[i] && selected[i]);
+    first = [];
+    byId('results').replaceChildren();
+    overlap.forEach(idea => { const li = document.createElement('li'); li.textContent = idea; byId('results').append(li); });
+    byId('summary').textContent = ['No shared choice this round.', 'One idea works for both of you.', 'Both ideas work for both of you.'][overlap.length];
+    byId('followup').textContent = ['Try two different ideas, or leave the evening open.', 'Check the time, place and cost together before making plans.', 'Choose the easier one to arrange, or save the second for another day.'][overlap.length];
+    show('result');
+  });
+  byId('begin-second').addEventListener('click', () => { turn = 2; vote(); });
+  byId('restart').addEventListener('click', () => {
+    ideas = []; first = []; turn = 1;
+    checks.forEach(check => { check.checked = false; });
+    byId('results').replaceChildren(); byId('summary').textContent = ''; byId('followup').textContent = '';
+    byId('label-a').textContent = ''; byId('label-b').textContent = ''; inputs.forEach(input => { input.value = input.defaultValue; }); byId('error').textContent = '';
+    show('setup'); inputs[0].focus();
+  });
+})();
+</script></body></html>
