@@ -3,6 +3,19 @@ const fields = ['topic', 'when', 'ask'].map($);
 const [topic, when, ask] = fields;
 const draft = $('draft');
 const status = $('result');
+const exportActions = document.createElement('div');
+exportActions.className = 'actions';
+const copyDraft = document.createElement('button');
+copyDraft.type = 'button';
+copyDraft.textContent = 'Copy current draft';
+copyDraft.disabled = true;
+const downloadDraft = document.createElement('button');
+downloadDraft.type = 'button';
+downloadDraft.className = 'secondary';
+downloadDraft.textContent = 'Download current draft';
+downloadDraft.disabled = true;
+exportActions.append(copyDraft, downloadDraft);
+draft.after(exportActions);
 let lastBuilt = '';
 const sample = ['how we divide weekend errands', 'Saturday after breakfast', 'what feels manageable for each of us'];
 const choices = document.createElement('div');
@@ -40,6 +53,10 @@ no.onclick = () => {
 };
 const hasWords = () => fields.some(field => field.value !== '') || draft.value !== '';
 const editedDraft = () => draft.value !== lastBuilt;
+function syncExport() {
+  const ready = draft.value.trim() !== '';
+  copyDraft.disabled = downloadDraft.disabled = !ready;
+}
 fields.forEach(field => field.addEventListener('input', () => {
   cancel();
   status.textContent = draft.value ? 'Your draft is unchanged. Choose Build my draft to use the updated details.' : '';
@@ -47,6 +64,7 @@ fields.forEach(field => field.addEventListener('input', () => {
 draft.addEventListener('input', () => {
   cancel();
   status.textContent = '';
+  syncExport();
 });
 function build() {
   const [t, w, a] = fields.map(field => field.value.trim());
@@ -56,6 +74,7 @@ function build() {
     return;
   }
   draft.value = lastBuilt = 'Would you be open to talking about ' + t + '? I could make time ' + w + '. I would like to understand ' + a + '. If that does not work for you, we can choose another time or leave it for now.';
+  syncExport();
   status.textContent = 'Draft ready. Edit anything that does not sound like you. This is an invitation, not an agreement.';
 }
 $('build').onclick = () => {
@@ -75,9 +94,32 @@ $('reset').onclick = () => {
   const clear = () => {
     fields.forEach(field => {field.value = '';});
     draft.value = lastBuilt = '';
+    syncExport();
     status.textContent = 'Cleared.';
     topic.focus();
   };
   if (hasWords()) choose($('reset'), 'Clear the entries and draft from this page?', 'Clear my work', clear);
   else clear();
 };
+copyDraft.onclick = async () => {
+  if (copyDraft.disabled) return;
+  try {
+    await navigator.clipboard.writeText(draft.value);
+    status.textContent = 'Draft copied. Nothing was sent or stored by this page.';
+  } catch {
+    status.textContent = 'Copy is unavailable in this browser. Select the editable draft and copy it manually.';
+  }
+};
+downloadDraft.onclick = () => {
+  if (downloadDraft.disabled) return;
+  const url = URL.createObjectURL(new Blob([draft.value + '\n'], {type: 'text/plain;charset=utf-8'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'one-topic-conversation-invitation.txt';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  status.textContent = 'Draft downloaded to this device. Nothing was sent or stored by this page.';
+};
+syncExport();
