@@ -214,8 +214,9 @@ details{background:var(--paper);border:1px solid var(--line);border-radius:12px;
   };
   const places = [0,1,2].map(n => byId('place-' + n));
   const picks = [0,1,2].map(n => byId('pick-' + n));
-  let previousExamples = [];
+  let previousExamples = [], renderVersion = 0, copyRequest = 0;
   function render() {
+    renderVersion++;
     const times = windows[selected('window')], ideas = examples[selected('kind')];
     const selectedPlans = [];
     let missingPlace = false;
@@ -244,11 +245,14 @@ details{background:var(--paper);border:1px solid var(--line);border-radius:12px;
   byId('copy-draft').addEventListener('click', async () => {
     const draft = byId('draft');
     if (!draft.value) return;
+    const snapshot = draft.value, version = renderVersion, request = ++copyRequest;
+    const current = () => version === renderVersion && request === copyRequest && draft.value === snapshot;
     try {
       if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('clipboard unavailable');
-      await navigator.clipboard.writeText(draft.value);
-      byId('copy-status').textContent = 'Copied.';
+      await navigator.clipboard.writeText(snapshot);
+      if (current()) byId('copy-status').textContent = 'Copied.';
     } catch (_) {
+      if (!current()) return;
       draft.focus(); draft.select(); draft.setSelectionRange(0, draft.value.length);
       byId('copy-status').textContent = 'The text is selected. Choose Copy in your browser.';
     }
