@@ -8,7 +8,7 @@ function analyze(){invalidate();const text=$('original').value;if(!text.trim()){
 if(text.length>3000){$('status').textContent='Keep the starting draft to 3,000 characters.';return;}
 const found=inspect(text);$('prompts').replaceChildren();found.forEach(f=>{const p=document.createElement('p');p.textContent='“'+f.phrase+'” ('+f.matches.length+') — '+f.prompt;$('prompts').appendChild(p);});
 $('analysis-note').textContent=found.length?'These are invitations to add detail, not errors. Keep any word that sounds right to you.':'None of the eight prompt phrases appeared. This does not mean the writing is specific or finished. Try naming one place, action or object yourself.';
-$('highlight').replaceChildren();const ranges=found.flatMap(x=>x.matches).sort((a,b)=>a.start-b.start);let end=0;ranges.forEach(r=>{const span=document.createElement('span');span.textContent=text.slice(end,r.start);$('highlight').appendChild(span);const mark=document.createElement('mark');mark.textContent=text.slice(r.start,r.end);$('highlight').appendChild(mark);end=r.end;});const tail=document.createElement('span');tail.textContent=text.slice(end);$('highlight').appendChild(tail);$('analysis').hidden=false;}
+$('highlight').replaceChildren();const ranges=found.flatMap(x=>x.matches).sort((a,b)=>a.start-b.start);let end=0;ranges.forEach(r=>{const span=document.createElement('span');span.textContent=text.slice(end,r.start);$('highlight').appendChild(span);const mark=document.createElement('mark');mark.textContent=text.slice(r.start,r.end);$('highlight').appendChild(mark);end=r.end;});const tail=document.createElement('span');tail.textContent=text.slice(end);$('highlight').appendChild(tail);$('analysis').hidden=false;$('analysis-title').focus();}
 function compare(){$('comparison-file-status').textContent='';const a=$('original').value,b=$('revision').value;$('comparison').hidden=true;if(!a.trim()||!b.trim()){$('status').textContent='Add both a starting draft and your revised draft before comparing.';(!a.trim()?$('original'):$('revision')).focus();return;}
 if(a.length>3000||b.length>3000){$('status').textContent='Keep each draft to 3,000 characters.';return;}$('status').textContent='';$('before').textContent=a;$('after').textContent=b;$('count').textContent='Starting draft: '+words(a)+' words. Revised draft: '+words(b)+' words. Length is not a quality score.';$('comparison').hidden=false;$('count').focus();}
 $('analyze').addEventListener('click',analyze);$('compare').addEventListener('click',compare);
@@ -104,12 +104,6 @@ for (const id of ['example', 'clear']) $(id).addEventListener('click', updateDra
 draftPicker.addEventListener('change', () => {
   chosenDraft = draftPicker.value;
   updateDraftActions();
-});
-$('compare').addEventListener('click', () => {
-  if (!$('comparison').hidden) {
-    chosenDraft = 'revision';
-    updateDraftActions();
-  }
 });
 window.addEventListener('pageshow', updateDraftActions);
 updateDraftActions();
