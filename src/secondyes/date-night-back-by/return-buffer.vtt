@@ -1,0 +1,26 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.500
+With a ten-minute buffer, the example date starts at 8:00.
+
+2
+00:00:03.500 --> 00:00:05.500
+Keep the 10:00 deadline. Start with ten minutes of buffer.
+
+3
+00:00:05.500 --> 00:00:06.000
+Keep the 10:00 deadline. Select the return buffer.
+
+4
+00:00:06.000 --> 00:00:09.000
+Enter 25 minutes instead. Select Work backward.
+
+5
+00:00:09.000 --> 00:00:13.500
+Meet at 7:45 and leave at 9:15. You can still be home by 10:00.
+
+6
+00:00:13.500 --> 00:00:18.000
+The example gives both times. Add a place before sending.
+
