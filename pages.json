@@ -1,0 +1,399 @@
+[
+ {
+  "title": "Put the next sentence on paper | Honest Little Apps",
+  "description": "Three thoughtful writing and planning activities. Original exercises with copy and print controls.",
+  "appSlug": "portfolio",
+  "strategy": "independent-activity-collection",
+  "query": "put the next sentence on paper",
+  "tags": [
+   "original activity",
+   "printable",
+   "relationships"
+  ],
+  "path": "/activities/practical-try-it-cards/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/activities/practical-try-it-cards/",
+  "published": "2026-11-06",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "Kinder Conversations: Mini-Challenges with Worked Answers",
+  "description": "Choose a free challenge collection, compare answer choices and read the worked explanation. Original companion activities from Honest Little Apps.",
+  "appSlug": "resources",
+  "strategy": "challenge-collection-index",
+  "query": "kinder conversations practice questions",
+  "tags": [
+   "mini challenges"
+  ],
+  "path": "/activities/scenario-challenges/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/activities/scenario-challenges/",
+  "published": "2026-11-06",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "27 Letter Drafting Choices",
+  "description": "Choose wording that fits a recipient, purpose, and real detail through short worked writing scenarios.",
+  "appSlug": "dear-you",
+  "strategy": "worked-scenario-quiz",
+  "query": "letter writing practice questions",
+  "tags": [
+   "worked examples",
+   "mini challenges",
+   "dear-you"
+  ],
+  "path": "/dear-you/scenario-challenges/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/scenario-challenges/",
+  "published": "2026-11-06",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "27 Second-Date Planning Decisions",
+  "description": "Match invitations, timing, budget, and activities to the preferences and practical facts in each scenario.",
+  "appSlug": "secondyes",
+  "strategy": "worked-scenario-quiz",
+  "query": "second date planning scenarios",
+  "tags": [
+   "worked examples",
+   "mini challenges",
+   "secondyes"
+  ],
+  "path": "/secondyes/scenario-challenges/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/scenario-challenges/",
+  "published": "2026-11-06",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "27 Everyday Conversation Decision Questions",
+  "description": "Work through ordinary shared-life scenarios with clear requests, voluntary agreements, and explained choices.",
+  "appSlug": "unfight",
+  "strategy": "worked-scenario-quiz",
+  "query": "couples communication scenario questions",
+  "tags": [
+   "worked examples",
+   "mini challenges",
+   "unfight"
+  ],
+  "path": "/unfight/scenario-challenges/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/scenario-challenges/",
+  "published": "2026-11-06",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "Date Night Back-By Calculator: When Should You Leave?",
+  "description": "Count back from a firm return time. Allow for travel, a date and a buffer, then see when to head out, meet and leave the venue.",
+  "appSlug": "secondyes",
+  "strategy": "interactive-tool",
+  "query": "When should you leave for date night?",
+  "tags": [
+   "secondyes",
+   "planner"
+  ],
+  "path": "/secondyes/date-night-back-by/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/date-night-back-by/",
+  "published": "2026-11-05",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "3am Worry Journal Prompts: A Flowchart for the Night Shift",
+  "description": "Awake at 3am worrying? A three-question flowchart hands you the right journal prompt and a date to seal it for, plus a wind-down checklist. No app needed.",
+  "appSlug": "dear-you",
+  "strategy": "decision-flowchart",
+  "query": "3am worry journal prompts",
+  "tags": [
+   "sleep",
+   "worry",
+   "journaling",
+   "prompts",
+   "night"
+  ],
+  "path": "/dear-you/3am-worry-journal-prompts/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/3am-worry-journal-prompts/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Decision Journal Template: A Letter Before a Life Change",
+  "description": "Separate facts, assumptions and trade-offs in an editable future-self letter with a fictional worked example.",
+  "appSlug": "dear-you",
+  "strategy": "writing-worksheet",
+  "query": "decision journal template letter before life change",
+  "tags": [
+   "letters",
+   "reflection",
+   "writing"
+  ],
+  "path": "/dear-you/decision-letter-before-change/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/decision-letter-before-change/",
+  "published": "2026-11-04",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "Make a Personal Letter More Specific — Free Detail Workshop",
+  "description": "Make a personal letter more specific with detail prompts and a side-by-side comparison. Keep either draft or download both versions together.",
+  "appSlug": "dear-you",
+  "strategy": "interactive-tool",
+  "query": "how to make a personal letter more specific",
+  "tags": [
+   "letter writing",
+   "personal journal",
+   "revision"
+  ],
+  "path": "/dear-you/letter-detail-workshop/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/letter-detail-workshop/",
+  "published": "2026-11-04",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "Letter to Your Past Self: Guided Prompts and Editable Template",
+  "description": "Three specific prompts become an editable letter using your own words. Free, no account, copy when ready.",
+  "appSlug": "dear-you",
+  "strategy": "interactive-writing-tool",
+  "query": "letter to past self template prompts",
+  "tags": [
+   "letters",
+   "reflection",
+   "writing",
+   "past-self"
+  ],
+  "path": "/dear-you/letter-to-past-self/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/letter-to-past-self/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Ordinary Day Time Capsule: A Letter to Remember Today",
+  "description": "Turn four small observations into a letter with a live preview and text download. No signup or draft storage.",
+  "appSlug": "dear-you",
+  "strategy": "interactive-tool",
+  "query": "ordinary day time capsule letter prompts",
+  "tags": [
+   "writing",
+   "future-self",
+   "journal",
+   "reflection"
+  ],
+  "path": "/dear-you/ordinary-day-time-capsule/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/ordinary-day-time-capsule/",
+  "published": "2026-11-04",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "Compare Two Date Plans: Time & Budget Worksheet",
+  "description": "Compare two date ideas using your own cost and time estimates. See the tradeoffs clearly before sending an invitation.",
+  "appSlug": "secondyes",
+  "strategy": "interactive-tool",
+  "query": "compare date plans time budget",
+  "tags": [
+   "date-planning",
+   "budget",
+   "time"
+  ],
+  "path": "/secondyes/date-plan-tradeoffs/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/date-plan-tradeoffs/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "What to Include in a Date Invitation Link",
+  "description": "A fictional detail-selection exercise and sharing checklist for a clear date invitation.",
+  "appSlug": "secondyes",
+  "strategy": "interactive-guide",
+  "query": "date invitation link privacy what to include",
+  "tags": [
+   "invitations",
+   "privacy",
+   "planning"
+  ],
+  "path": "/secondyes/invitation-privacy-check/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/invitation-privacy-check/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Second Date After Meeting Online: Facts & Plan | SecondYes",
+  "description": "Draft a second-date message from one to three example plans. See how SecondYes turns your own plans into an invitation someone can answer in their browser.",
+  "appSlug": "secondyes",
+  "strategy": "fact-roundup",
+  "query": "second date after meeting online",
+  "tags": [
+   "dating",
+   "second-date",
+   "online-dating",
+   "planning"
+  ],
+  "path": "/secondyes/second-date-after-meeting-online/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/second-date-after-meeting-online/",
+  "published": "2026-11-04",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "Second Date Conversation Cards: 12 Questions with Follow-Ups",
+  "description": "Try 12 original second-date conversation starters, grouped by mood. Each card includes a follow-up and a small listening cue. Skip freely; no scores or compatibility claims.",
+  "appSlug": "secondyes",
+  "strategy": "useful interactive tool with worked example and contextual app conversion",
+  "query": "Second Date Conversation Cards: 12 Questions with Follow-Ups",
+  "tags": [
+   "secondyes",
+   "cards",
+   "interactive tool"
+  ],
+  "path": "/secondyes/second-date-conversation-cards/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/second-date-conversation-cards/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Should I Go on a Second Date? Free 6-Question Debrief",
+  "description": "Sort interest, comfort, pace and practical hesitation after date one. Six private questions, with an optional local text note and no compatibility score.",
+  "appSlug": "secondyes",
+  "strategy": "interactive-debrief",
+  "query": "should I go on a second date",
+  "tags": [
+   "dating",
+   "second-date",
+   "first-date",
+   "reflection",
+   "adults"
+  ],
+  "path": "/secondyes/should-i-go-on-a-second-date-debrief/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/should-i-go-on-a-second-date-debrief/",
+  "published": "2026-11-04",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "Shared Chore Handoff Worksheet: Make the Whole Task Visible",
+  "description": "Break one household chore into noticing, preparation, doing and finishing. Draft proposed owners and a clear finish line without assuming agreement.",
+  "appSlug": "unfight",
+  "strategy": "interactive-worksheet",
+  "query": "shared chore handoff worksheet",
+  "tags": [
+   "household-tasks",
+   "communication",
+   "chores"
+  ],
+  "path": "/unfight/chore-handoff-worksheet/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/chore-handoff-worksheet/",
+  "published": "2026-11-04",
+  "updated": "2026-11-06"
+ },
+ {
+  "title": "First Fight After Moving In Together: Your First 7 Days",
+  "description": "Is it normal to fight after moving in together? Usually, yes. A seven-day plan for the week after it, one tap per day, and the words for a pause.",
+  "appSlug": "unfight",
+  "strategy": "first-week-guide",
+  "query": "first fight after moving in together",
+  "tags": [
+   "couples",
+   "moving-in",
+   "arguments",
+   "first-week",
+   "communication"
+  ],
+  "path": "/unfight/first-fight-after-moving-in-together/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/first-fight-after-moving-in-together/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Holiday Planning Conversation for Couples: Free Agenda Builder",
+  "description": "Choose family visits, gifts, hosting or travel, then build a five-prompt discussion outline you can copy without signing up.",
+  "appSlug": "unfight",
+  "strategy": "free-tool",
+  "query": "holiday planning conversation for couples",
+  "tags": [
+   "couples",
+   "communication",
+   "planning"
+  ],
+  "path": "/unfight/holiday-planning-agenda/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/holiday-planning-agenda/",
+  "published": "2026-11-04",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "A One-Topic Conversation Invitation — Free Draft Builder",
+  "description": "Prepare a clear invitation to revisit one topic, with a time, a request and room for the other person to decline. Nothing is sent.",
+  "appSlug": "unfight",
+  "strategy": "interactive-tool",
+  "query": "conversation invitation after disagreement example",
+  "tags": [
+   "communication",
+   "draft",
+   "reflection"
+  ],
+  "path": "/unfight/one-topic-conversation-invitation/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/one-topic-conversation-invitation/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Specific Appreciation Examples for Couples | Free Practice Lab",
+  "description": "Practice a specific thank-you that names what happened and its impact, while keeping any new request separate.",
+  "appSlug": "unfight",
+  "strategy": "interactive-tool",
+  "query": "specific appreciation examples for couples",
+  "tags": [
+   "couples",
+   "communication",
+   "appreciation",
+   "consent",
+   "reflection"
+  ],
+  "path": "/unfight/specific-appreciation-notes/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/specific-appreciation-notes/",
+  "published": "2026-11-04",
+  "updated": "2026-11-04"
+ },
+ {
+  "title": "Letter to Your Future Self: Printable Template for Birthdays",
+  "description": "A letter to your future self template, printable and free, for a birthday worth remembering: six prompts you scratch to reveal, and a one-page PDF.",
+  "appSlug": "dear-you",
+  "strategy": "printable",
+  "query": "letter to your future self template",
+  "tags": [
+   "journaling",
+   "future-self",
+   "birthday",
+   "printable",
+   "letters"
+  ],
+  "path": "/dear-you/letter-to-your-future-self-template-birthday/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/dear-you/letter-to-your-future-self-template-birthday/",
+  "published": "2026-11-03",
+  "updated": "2026-11-03"
+ },
+ {
+  "title": "How to Ask for a Second Date (Without the Awkward Text)",
+  "description": "Write a second-date invitation with one to three options that match when you are free. Edit the places, choose a tone and copy the text without an account.",
+  "appSlug": "secondyes",
+  "strategy": "question-answer",
+  "query": "how to ask for a second date",
+  "tags": [
+   "dating",
+   "second-date",
+   "texting",
+   "relationships"
+  ],
+  "path": "/secondyes/how-to-ask-for-a-second-date/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/secondyes/how-to-ask-for-a-second-date/",
+  "published": "2026-11-03",
+  "updated": "2026-11-05"
+ },
+ {
+  "title": "How to Take a Break in an Argument Without Stonewalling",
+  "description": "How to take a break during an argument without it reading as stonewalling: three taps to the right pause, a message you can edit, and the 20-minute rule.",
+  "appSlug": "unfight",
+  "strategy": "question-answer",
+  "query": "how to take a break during an argument",
+  "tags": [
+   "couples",
+   "arguments",
+   "communication",
+   "stonewalling",
+   "break"
+  ],
+  "path": "/unfight/how-to-take-a-break-in-an-argument/",
+  "url": "https://udrwu9c0tjuedqy2.github.io/hla-relationships/unfight/how-to-take-a-break-in-an-argument/",
+  "published": "2026-11-03",
+  "updated": "2026-11-03"
+ }
+]
